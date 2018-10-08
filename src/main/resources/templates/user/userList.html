@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmnls:th="http://www.thymeleaf.org"
+      xmlns:xmnls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body class="container">
+<div align="center" >
+    <div class="control-label">
+        <button class="btn btn-circle blue"><a th:href="@{/thymeleaf/toAdd}">add</a></button>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>email</th>
+            <th>identity</th>
+            <th>operate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user:${users}">
+            <td scope="row" th:text="${user.id}"></td>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.identity}"></td>
+            <td>
+                <a th:href="@{/thymeleaf/toEdit(id=${user.id})}">edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a th:href="@{/thymeleaf/delUser(id=${user.id})}">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

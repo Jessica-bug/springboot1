@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf index html page</title>
+</head>
+<body>
+<p th:text="'Receive Name is:'+${name}"/>
+</body>
+<script>
+    javascript:(function () {
+        var description;
+        var desString = "";
+        var metas = document.getElementsByTagName('meta');
+        for (var x = 0, y = metas.length; x < y; x++) {
+            if (metas[x].name.toLowerCase() == "description") {
+                description = metas[x];
+            }
+        }
+        if (description) {
+            desString = "&amp;description=" + encodeURIComponent(description.content);
+        }
+        var win = window.open("http://favorites.ren/collect?from=webtool&url=" + encodeURIComponent(document.URL) + desString + "&title=" + encodeURIComponent(document.title) + "&charset=" + document.charset, '_blank');
+        win.focus();
+    })();
+</script>
+</html>

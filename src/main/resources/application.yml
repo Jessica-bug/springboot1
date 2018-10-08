@@ -1,0 +1,63 @@
+#yaml语言的配置文件，yaml 是以数据为中心的语言，在配置数据的时候具有面向对象的特征。
+#结构整体比.properties文件更加清晰
+#注意：属性的冒号和属性值之间有空格
+user:
+  names: lili
+  age: 23
+
+content: "name:${user.names},age:${user.age}"
+
+spring:
+  mvc:
+    view:
+#      prefix: /WEB-INF/view
+#      suffix: .jsp
+# thymeleaf访问页面配置,默认静态资源在resource下static下，模板页在resource下templates下：
+      prefix: /
+      suffix: .html
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+  thymeleaf:
+    cache: false
+#REDIS相关配置
+  redis:
+#  redis数据库索引（默认为0）
+    database: 0
+#    redis服务地址
+    host: localhost
+#    redis端口
+    port: 6379
+#    redis密码，默认为空
+    password:
+#    连接池最大连接数，负数代表没有限制
+    pool:
+      max-active: 8
+#      连接池最大阻塞等待时间，负数代表没有限制
+      max-wait: -1
+#     连接池最大空闲连接
+      max-idle: 8
+#      连接池最小空闲连接
+      min-idle: 0
+#   redis连接超时时间
+    timeout: 0
+
+logging:
+  path: /user/local/log
+  level:
+    com:
+      favorites: debug
+    org:
+      springframework:
+        web: info
+      hibernate: error
+
